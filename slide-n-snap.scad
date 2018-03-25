@@ -2,7 +2,7 @@
 This work is lincensed by Benjamin E Morgan under a Creative Commons Attribution 4.0 International License
 http://creativecommons.org/licenses/by/4.0/
 
-Use these openscad modules to make two FDM printed parts be rigidly attached after printing with no additional hardware. Parts can be attached in such away that separating them is very difficult. Male and female parts should be printed in their given orientations to maximize the tensile strength of the connection. The two parts slide and snap together. A living spring and hook will snap and lock the pieces in place when they are assembled.
+Use these openscad modules to attach two FDM printed parts rigidly together after printing with no additional hardware. Parts can be attached in such away that separating them is very difficult. Male and female parts should be printed in their given orientations to maximize the tensile strength of the connection. The two parts slide and snap together. A living spring and hook will snap and lock the pieces in place when they are assembled.
 
 Usage: 
 difference(){...} a slide_n_snap_female_clip_negative(...) from one part you wish to connect

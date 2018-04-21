@@ -4,9 +4,13 @@ http://creativecommons.org/licenses/by/4.0/
 
 Original Source: https://github.com/benjamin-edward-morgan/openscad-slide-n-snap
 
-Use these openscad modules can be used to attach two FDM 3D printed parts rigidly together with no additional hardware. Parts can be attached in such away that separating them is very difficult. Male and female parts should be printed in their given orientations to maximize the tensile strength of the connection. The two parts slide and snap together. A living spring and hook snap and lock the pieces in place when they are assembled.
+Use these openSCAD modules to attach two FDM 3D printed parts together permanently without requiring additional hardware.  The two parts, male and female, slide and snap together. They attach so that separating them is difficult.
 
-Usage: 
+The female part's living spring and hook snaps and locks the male part in place when they are assembled. The female part is modeled in negative space and must be subtracted from one of the parts you wish to assemble. The male part of the connection is modeled in positive space and is added with the other part you are assembling. It is important to print the parts in their given orientations to maximize the tensile strength of the connection.
+
+The slide-n-snap-tests.scad file utilizes this library and contains ring-shaped test parts to measure the fit and strength with different input parameters.
+
+Usage:
 
 //Copy slide-n-snap.scad to the same directory where your openSCAD files are and use an include statement:
 include<slide-n-snap.scad>;
@@ -24,7 +28,7 @@ union() {
 }
 */
 
-/* Explanation of variables: 
+/* Explanation of variables:
 t - width of smallest part of male clip. larger value makes a stronger connection
 w - width of largest part of male clip. w > t+2*g
 l - length of male clip part. l >= w
@@ -63,11 +67,11 @@ module slide_n_snap_male_clip(t,w,l) {
 }
 
 /*
-Models negative space for the female clip. This includes the channel, living spring, and hook. It should be subtacted from the body of the part you with to attach. The body of you wish to subtract the famale clip from should lie on top of the xy plane and be at least as tick as slide_n_snap_clip_height(...). If your part is siginficantly thicker, the cavity may lie entirely within the part, making the living spring very difficult to access once assembled. In the case, separating the two printed parts once assembled will be more difficult. 
+Models negative space for the female clip. This includes the channel, living spring, and hook. It should be subtacted from the body of the part you with to attach. The body of you wish to subtract the famale clip from should lie on top of the xy plane and be at least as tick as slide_n_snap_clip_height(...). If your part is siginficantly thicker, the cavity may lie entirely within the part, making the living spring very difficult to access once assembled. In the case, separating the two printed parts once assembled will be more difficult.
 */
 //slide_n_snap_female_clip_negative(t=1.75,w=5.25,g=0.25,j=0.5,l=7,h=1,s=0.8,a=7,c=20);
 module slide_n_snap_female_clip_negative(t,w,g,j,l,h,s,a,c,epsilon=0.001,incl_cavity=true) {
-    difference() 
+    difference()
     {
         union() {
             color("deeppink")
@@ -83,24 +87,24 @@ module slide_n_snap_female_clip_negative(t,w,g,j,l,h,s,a,c,epsilon=0.001,incl_ca
                 -(w+2*g*oprt)/2,
                 -w/2+t/2-s-h-g-l-j,
                 -epsilon
-            ]) 
+            ])
             cube(size=[
                 w+2*g*oprt,
                 w/2-t/2+s+h+g+j,
                 w/2-t/2+epsilon]
             );
-        
+
             color("red")
             translate([0,0,w/2-t/2-epsilon])
             linear_extrude(height=s+2*epsilon)
-            slide_n_snap_spring_negative_profile(t=t,w=w,g=g,j=j,l=l,s=s,h=h,a=a);    
-    
+            slide_n_snap_spring_negative_profile(t=t,w=w,g=g,j=j,l=l,s=s,h=h,a=a);
+
             if(incl_cavity) {
                 color("salmon")
                 slide_n_snap_living_spring_cavity(t=t,w=w,g=g,j=j,l=l,s=s,h=h,a=a,epsilon=epsilon);
             }
         }
-        
+
         color("hotpink")
         translate([0,-l-g,0])
         slide_n_snap_hook(t=t,w=w,g=g,j=j,h=h,s=s,epsilon=epsilon);
@@ -112,7 +116,7 @@ An upside down version of the female clip negative. It also assumes that the bod
 */
 //slide_n_snap_upside_down_female_clip_negative(t=1.75,w=5.25,g=0.25,j=0.5,l=7,h=1,s=0.8,a=7,c=20);
 module slide_n_snap_upside_down_female_clip_negative(t,w,g,j,l,h,s,a,c,epsilon=0.01) {
-    
+
     translate([0,0,slide_n_snap_clip_height(t=t,w=w,s=s)])
     mirror([0,0,1])
     slide_n_snap_female_clip_negative(t=t,w=w,g=g,j=j,l=l,h=h,s=s,a=a,c=c,epsilon=epsilon,incl_cavity=false);
@@ -122,7 +126,7 @@ module slide_n_snap_upside_down_female_clip_negative(t,w,g,j,l,h,s,a,c,epsilon=0
 /**Internal Modules used by the slide-n-snap parts are below here**/
 /******************************************************************/
 /*
-the hook at the end of the living spring and locks the male clip part in place once assembled. The hook is angled on one side so that inserting the male clip part causes it to deflect upward. 
+the hook at the end of the living spring and locks the male clip part in place once assembled. The hook is angled on one side so that inserting the male clip part causes it to deflect upward.
 */
 //slide_n_snap_hook(t=2,w=5,g=0.25,j=0.5,h=0.5,s=0.8);
 module slide_n_snap_hook(t,w,g,j,h,s,epsilon=0.001) {
@@ -142,16 +146,16 @@ this 2D profile removes 3 edges around the living spring, leaving 1 edge attache
 //slide_n_snap_spring_negative_profile(t=1.75,w=5.25,g=0.25,j=0.5,l=7,s=0.8,h=1,a=6);
 module slide_n_snap_spring_negative_profile(t,w,g,j,l,s,h,a) {
     oprt = (1+sqrt(2));
-    
+
     x1 = -w/2-g*oprt;
     x2 = x1+j;
     x3 = -x2;
     x4 = -x1;
-    
+
     y1 = 0;
     y2 = w/2-t/2+s+2*g+h;
     y3 = a+w/2-t/2+s+h+2*g+j;
-    
+
     translate([0,-y3-l+a+g])
     polygon(points=[
         [x1,y1],
@@ -162,7 +166,7 @@ module slide_n_snap_spring_negative_profile(t,w,g,j,l,s,h,a) {
         [x3,y3],
         [x4,y3],
         [x4,y1]
-    ]);   
+    ]);
 }
 
 /*
@@ -170,7 +174,7 @@ box-shaped negative positioned over the living spring. This cavity leaves room o
 */
 //slide_n_snap_living_spring_cavity(t=1.75,w=5.25,g=0.25,j=0.5,l=7,s=0.8,h=1,a=6);
 module slide_n_snap_living_spring_cavity(t,w,g,j,l,s,h,a,epsilon=0.0001) {
-    y3 = a+w/2-t/2+s+h+2*g+j;   
+    y3 = a+w/2-t/2+s+h+2*g+j;
     translate([
         -w/2-g*(1+sqrt(2)),
         -y3-l+a+g,
@@ -180,16 +184,16 @@ module slide_n_snap_living_spring_cavity(t,w,g,j,l,s,h,a,epsilon=0.0001) {
         slide_n_snap_channel_width(w,g),
         y3,
         w/2-t/2+g
-    ]);   
+    ]);
 }
 
 /*
-2D profile of negative space for the female clip part 
+2D profile of negative space for the female clip part
 */
 //slide_n_snap_clip_female_negative_profile(t=1.75,w=5.25,g=0.25);
 module slide_n_snap_clip_female_negative_profile(t,w,g,epsilon=0.001) {
    goprt = g*(1+sqrt(2));
-   color("pink") 
+   color("pink")
    polygon(points=[
        [-w/2-goprt,w/2-t/2],
        [w/2+goprt,w/2-t/2],
@@ -203,7 +207,7 @@ module slide_n_snap_clip_female_negative_profile(t,w,g,epsilon=0.001) {
 */
 //slide_n_snap_male_clip_profile(t=1.75,w=5.25);
 module slide_n_snap_male_clip_profile(t,w) {
-   color("blue") 
+   color("blue")
    polygon(points=[
        [t/2,0],[w/2,0],
        [w/2,-t/2],

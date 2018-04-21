@@ -7,31 +7,31 @@ Original Source: https://github.com/benjamin-edward-morgan/slide-n-snap
 Use these openscad modules can be used to attach two FDM 3D printed parts rigidly together with no additional hardware. Parts can be attached in such away that separating them is very difficult. Male and female parts should be printed in their given orientations to maximize the tensile strength of the connection. The two parts slide and snap together. A living spring and hook snap and lock the pieces in place when they are assembled.
 Usage: 
 
-//Copy this file to the same directory where your openSCAD files are and use an include statement:
+//Copy slide-n-snap.scad to the same directory where your openSCAD files are and use an include statement:
 include<slide-n-snap.scad>;
 
 //Subtract the slide_n_snap_female_clip_negative from one part. For example:
 difference() {
   your_module(...);
   slide_n_snap_female_clip_negative(t=1.75,w=5.25,g=0.25,j=0.5,l=7,h=1,s=0.8,a=7,c=20);
-} 
-//Also union the slide_n_snap male_clip from another part. For example:
-union(){
-  your_other_modules(...);
-  slide_n_snap_male_clip(t=1.75,w=5.25,l=7)
 }
 
+//Also union the slide_n_snap male_clip from another part. For example:
+union() {
+  your_other_module(...);
+  slide_n_snap_male_clip(t=1.75,w=5.25,l=7)
+}
 */
 
 /* Explanation of variables: 
-t - width of smallest part of clip. larger value makes a stronger connection
-w - width of largest part of clip. w > t+2*g
+t - width of smallest part of male clip. larger value makes a stronger connection
+w - width of largest part of male clip. w > t+2*g
 l - length of male clip part. l >= w
 g - gap between faces inside the clip. decrease if assembly is loose, increase if the parts are too tight to assemble. This value depends on the tolerance of the 3D printer used.
 j - gap around edge of living spring. generally this will be about 2*g or larger if the edge of the living spring prints fused together. This value depends on the tolerance of the 3D printer used.
 h - length of the base of the hook. generally 1 or 2 mm is all that is needed when printing "right-side-up" for the hook to adhere to the print bed.
-s - thickness of living spring. generally should be around 3 or 4 layers thick for fdm. In the "right-side-up" configuration, the living spring is formed with a bridge between the hook and the base of the channel. In the "upside-down" configuration, the living spring is formed directly on the print bed.
-c - extra length of channel. This is how much extra channel to add in front of the clip. This length depends entirely on the placement of the female clip negative and the body it is removed from. Make this long enough that the channel goes all the way to the edge of your part.
+s - thickness of living spring. generally should be around 3 or 4 layers thick for fdm. In the "right-side-up" configuration, the living spring is formed with a bridge between the hook and the base of the channel. In the "upside-down" configuration, the living spring is formed directly on the print bed and the hook is built up over it.
+c - extra length of channel. This is how much extra channel to add in front of the famale part of the clip. This length depends entirely on the placement of the female clip negative and the body it is removed from. Make this long enough that the channel goes all the way to the edge of your part.
 a - length of living spring. a <= l
 epsilon - small value by which some values are fudged to overcome floating point errors. the default is 0.001 to make the real-time rendered view slightly less glitchy. All geometry will also work with an epsilon value of 0.
 */
@@ -52,7 +52,7 @@ function slide_n_snap_female_length(w,t,g,j,h,l,s) = w/2-t/2+s+h+g+j+l;
 /**Main slide-n-snap modules**/
 /*****************************/
 /*
-positive space for the male clip. It should be printed in this orientation for maximum overall tensile strength when printed an FDM printer. This part taked advantage of the fact that FDM printed parts are generally more susceptible to break under strain in the z direction then in the x or y. The body of the part you wish to attatch this part too should be on the -y side of the zx plane.
+Models the positive space for the male clip. It should be printed in this orientation for maximum overall tensile strength when printed an FDM printer. This part takes advantage of the fact that FDM printed parts are generally more susceptible to break under strain between layers in a plane parallel to the x-y plane. The body of the part you wish to add the male clip too should be on the -y side of the zx plane near the origin.
 */
 //slide_n_snap_male_clip(t=1.75,w=5.25,l=7);
 module slide_n_snap_male_clip(t,w,l) {
@@ -62,7 +62,7 @@ module slide_n_snap_male_clip(t,w,l) {
 }
 
 /*
-Negative space for the female clip. This includes the channel, living spring, and hook. It should be differenced() from the body of the part you with to attach. The body of your part should lie on top of the xy plane and be at least as tick as slide_n_snap_clip_height(...). If your part is siginficantly thicker, the cavity may lie entirely within the part, making the living spring very difficult to access. In the case, separating the two printed parts once assembled will be very difficult. 
+Models negative space for the female clip. This includes the channel, living spring, and hook. It should be subtacted from the body of the part you with to attach. The body of you wish to subtract the famale clip from should lie on top of the xy plane and be at least as tick as slide_n_snap_clip_height(...). If your part is siginficantly thicker, the cavity may lie entirely within the part, making the living spring very difficult to access once assembled. In the case, separating the two printed parts once assembled will be more difficult. 
 */
 //slide_n_snap_female_clip_negative(t=1.75,w=5.25,g=0.25,j=0.5,l=7,h=1,s=0.8,a=7,c=20);
 module slide_n_snap_female_clip_negative(t,w,g,j,l,h,s,a,c,epsilon=0.001,incl_cavity=true) {
@@ -107,7 +107,7 @@ module slide_n_snap_female_clip_negative(t,w,g,j,l,h,s,a,c,epsilon=0.001,incl_ca
 }
 
 /*
-An upside down version of the female clip negative. It also assumes that the body is is differenced from lies above the xy plane. The thickness of the other body should be no more than lide_n_snap_clip_height(...) or should leave room for the male clip to be attached. The cavity is excluded in the case, since it lies entirely below the xy plane. 
+An upside down version of the female clip negative. It also assumes that the body is is differenced from lies above the xy plane. The thickness of the other body should *exatly* lide_n_snap_clip_height(...) or should leave room for the male clip to be attached. The cavity is excluded in the case, since it lies entirely below the xy plane. The living spring is accessible after the parts are assmebled. They can be separated more easily because the living spring can be pryed upward to release the male clip part.
 */
 //slide_n_snap_upside_down_female_clip_negative(t=1.75,w=5.25,g=0.25,j=0.5,l=7,h=1,s=0.8,a=7,c=20);
 module slide_n_snap_upside_down_female_clip_negative(t,w,g,j,l,h,s,a,c,epsilon=0.01) {
@@ -128,10 +128,10 @@ module slide_n_snap_hook(t,w,g,j,h,s,epsilon=0.001) {
     rotate([90,0,-90])
     linear_extrude(height=w+2*g*(1+sqrt(2))-2*j,center=true)
     polygon(points=[
-        [0,-epsilon],
-        [0,w/2-t/2+s+epsilon],
-        [w/2-t/2+s+h+epsilon,w/2-t/2+s+epsilon],
-        [h-epsilon,-epsilon]
+        [-epsilon,-2*epsilon],
+        [-epsilon,w/2-t/2+s+2*epsilon],
+        [w/2-t/2+s+h+epsilon,w/2-t/2+s+2*epsilon],
+        [h-epsilon,-2*epsilon]
     ]);
 }
 

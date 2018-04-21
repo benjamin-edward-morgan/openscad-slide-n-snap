@@ -4,7 +4,7 @@ http://creativecommons.org/licenses/by/4.0/
 
 Original Source: https://github.com/benjamin-edward-morgan/openscad-slide-n-snap
 
-Use these openSCAD modules to attach two FDM 3D printed parts together permanently without requiring additional hardware.  The two parts, male and female, slide and snap together. They attach so that separating them is difficult.
+Use these openSCAD modules to attach two FDM 3D printed parts together securely without requiring additional hardware.  The two parts, male and female, slide and snap together. They attach so that separating them is difficult.
 
 The female part's living spring and hook snaps and locks the male part in place when they are assembled. The female part is modeled in negative space and must be subtracted from one of the parts you wish to assemble. The male part of the connection is modeled in positive space and is added with the other part you are assembling. It is important to print the parts in their given orientations to maximize the tensile strength of the connection.
 

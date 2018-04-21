@@ -2,13 +2,11 @@
 This work is lincensed by Benjamin E Morgan under a Creative Commons Attribution 4.0 International License
 http://creativecommons.org/licenses/by/4.0/
 
-Original Source: https://github.com/benjamin-edward-morgan/slide-n-snap
+Original Source: https://github.com/benjamin-edward-morgan/openscad-slide-n-snap
 
-These are test objects utilizing the slide-n-snap library. These test objects can be used to clibrate the 3D printer being used to print objects with slide-n-snap, to experiment with and fine-tune the parameters, or to test the strength of the connection between test parts.
+These are test objects utilizing the slide-n-snap library. These test objects can be used to calibrate the 3D printer being used to print objects with slide-n-snap, to experiment with and fine-tune the parameters, or to test the strength of the connection between test parts.
 
-Variables in the size profiles below are the same as those used in slide-n-snap.scad 
-
-
+Variables in the size profiles below are the same as those defined in slide-n-snap.scad 
 */
 
 include<slide-n-snap.scad>;

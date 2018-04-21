@@ -2,9 +2,10 @@
 This work is lincensed by Benjamin E Morgan under a Creative Commons Attribution 4.0 International License
 http://creativecommons.org/licenses/by/4.0/
 
-Original Source: https://github.com/benjamin-edward-morgan/slide-n-snap
+Original Source: https://github.com/benjamin-edward-morgan/openscad-slide-n-snap
 
 Use these openscad modules can be used to attach two FDM 3D printed parts rigidly together with no additional hardware. Parts can be attached in such away that separating them is very difficult. Male and female parts should be printed in their given orientations to maximize the tensile strength of the connection. The two parts slide and snap together. A living spring and hook snap and lock the pieces in place when they are assembled.
+
 Usage: 
 
 //Copy slide-n-snap.scad to the same directory where your openSCAD files are and use an include statement:

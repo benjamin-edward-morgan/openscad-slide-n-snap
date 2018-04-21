@@ -15,13 +15,13 @@ include<slide-n-snap.scad>;
 
 /**** Uncomment a size profile, the uncomment the ring_test_plate below ****/
 //small
-//t=1.75;w=5.25;l=7;g=0.3;j=0.6;h=1;s=1;a=7;ring_inner_d=5;ring_bulk=2;
+t=1.75;w=5.25;l=7;g=0.3;j=0.6;h=1;s=1;a=7;ring_inner_d=5;ring_bulk=2;
 
 //medium
 //t=2.0;w=6.5;l=8.5;g=0.35;j=0.7;h=1.2;s=1;a=8.5;ring_inner_d=5;ring_bulk=2;
 
 //large
-t=2.75;w=8;l=10;g=0.4;j=0.8;h=2;s=1.5;a=10;ring_inner_d=5;ring_bulk=2;
+//t=2.75;w=8;l=10;g=0.4;j=0.8;h=2;s=1.5;a=10;ring_inner_d=5;ring_bulk=2;
 
 /**** Uncoment to test ****/
 ring_test_plate(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
@@ -41,7 +41,7 @@ module ring_test_plate(t,w,l,g,j,h,s,a,ring_inner_d,ring_bulk) {
 }
    
 /*
-The slide_n_snap_female_clip_negative differenced from a ring test part.
+The slide_n_snap_female_clip_negative subtracted from a ring test part.
 */
 //slide_n_snap_female_clip_ring_test(t=1.75,w=5.25,l=7,g=0.3,j=0.6,h=1,s=0.8,a=7,ring_inner_d=5,ring_bulk=2);
 module slide_n_snap_female_clip_ring_test(t,w,l,g,j,h,s,a,ring_inner_d) {
@@ -62,7 +62,7 @@ module slide_n_snap_female_clip_ring_test(t,w,l,g,j,h,s,a,ring_inner_d) {
 }
 
 /*
-The slide_n_snap_male_clip unioned with a ring test part.
+The slide_n_snap_male_clip added with a ring test part.
 */
 //slide_n_snap_male_clip_ring_test(t=1.75,w=5.25,l=7,g=0.3,ring_inner_d=5);
 module slide_n_snap_male_clip_ring_test(t,w,l,g,ring_inner_d) {  
@@ -80,7 +80,7 @@ module slide_n_snap_male_clip_ring_test(t,w,l,g,ring_inner_d) {
 }
 
 /*
-A ring with a flat region on the exterior. major radius is r1, minor radius is r2. a is the width of the flat region and b is the length. To print flat, r2/2 must equal a.
+A ring with a flat region on the exterior. major radius is r1, minor radius is r2. a is the width of the flat region and b is the length. To print flat, r2*2 must equal a.
 */
 //ring(r1=4,r2=2,a=5,b=5);
 module ring(r1,r2,a,b) {

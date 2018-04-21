@@ -15,16 +15,16 @@ include<slide-n-snap.scad>;
 
 /**** Uncomment a size profile, the uncomment the ring_test_plate below ****/
 //small
-//t=1.75;w=5.25;l=7;g=0.3;j=0.6;h=1;s=0.8;a=7;ring_inner_d=5;ring_bulk=2;
+//t=1.75;w=5.25;l=7;g=0.3;j=0.6;h=1;s=1;a=7;ring_inner_d=5;ring_bulk=2;
 
 //medium
-//t=2.5;w=6.5;l=8.5;g=0.4;j=0.7;h=1.5;s=1;a=8.5;ring_inner_d=5;ring_bulk=2;
+//t=2.0;w=6.5;l=8.5;g=0.35;j=0.7;h=1.2;s=1;a=8.5;ring_inner_d=5;ring_bulk=2;
 
 //large
-//t=3.5;w=8;l=10;g=0.45;j=0.8;h=2;s=1.2;a=10;ring_inner_d=5;ring_bulk=2;
+t=2.75;w=8;l=10;g=0.4;j=0.8;h=2;s=1.5;a=10;ring_inner_d=5;ring_bulk=2;
 
 /**** Uncoment to test ****/
-//ring_test_plate(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
+ring_test_plate(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
 
 /*******************************/
 /**slide-n-snap demonstrations**/
@@ -35,7 +35,8 @@ Test Plate to test tensile strength of assembly
 */
 module ring_test_plate(t,w,l,g,j,h,s,a,ring_inner_d,ring_bulk) {
     slide_n_snap_female_clip_ring_test(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);  
-    translate([l+ring_inner_d*2+ring_bulk,l+ring_inner_d/2,0])
+    translate([l+ring_inner_d*2+ring_bulk,0,0])
+    rotate(180)
     slide_n_snap_male_clip_ring_test(t=t,w=w,l=l,g=g,ring_inner_d=ring_inner_d);
 }
    
@@ -68,6 +69,7 @@ module slide_n_snap_male_clip_ring_test(t,w,l,g,ring_inner_d) {
     ring_r2=l/2;
     ring_r1=ring_inner_d/2+ring_r2;
     
+    translate([0,ring_r1+ring_r2,0])
     union() {        
         translate([0,0,ring_r2])
         rotate(-90)

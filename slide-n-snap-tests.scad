@@ -11,8 +11,8 @@ These are test objects utilizing the slide-n-snap library. These test objects ca
 include<slide-n-snap.scad>;
 
 /**** Uncomment a test plate profile ****/
-//PLATE="a"; 
-PLATE="b";
+PLATE="a"; 
+//PLATE="b";
 /**** Uncomment a size profile****/
 SIZE="small";
 //SIZE="medium";

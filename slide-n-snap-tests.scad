@@ -11,12 +11,12 @@ These are test objects utilizing the slide-n-snap library. These test objects ca
 include<slide-n-snap.scad>;
 
 /**** Uncomment a test plate profile ****/
-CMD_PLATE="a"; 
-//CMD_PLATE="b";
+//PLATE="a"; 
+PLATE="b";
 /**** Uncomment a size profile****/
-CMD_SIZE="small";
-//CMD_SIZE="medium";
-//CMD_SIZE="large";
+SIZE="small";
+//SIZE="medium";
+//SIZE="large";
 
 /*************************************/
 /**slide-n-snap test part definitons**/
@@ -29,27 +29,27 @@ ring_inner_d is the inner diameter of the rings
 ring_bulk is how much extra plastic is added around the ring
 */
 module ring_test() {
-    if(CMD_SIZE=="small") {
+    if(SIZE=="small") {
         t=1.75;w=5.25;l=7;g=0.3;j=0.6;h=1;s=1;a=7;ring_inner_d=5;ring_bulk=2;
         ring_test_plate(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
-    } else if (CMD_SIZE=="medium") {
+    } else if (SIZE=="medium") {
         t=2.0;w=6.5;l=8.5;g=0.35;j=0.7;h=1.2;s=1;a=8.5;ring_inner_d=5;ring_bulk=2;
         ring_test_plate(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
-    } else if (CMD_SIZE=="large") {
+    } else if (SIZE=="large") {
         t=2.75;w=8;l=10;g=0.4;j=0.8;h=2;s=1.5;a=10;ring_inner_d=5;ring_bulk=2;
         ring_test_plate(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
     } else {
-        echo("CMD_SIZE is invalid");
+        echo("SIZE is invalid");
     }
 }
 
 module ring_test_plate(t,w,l,g,j,h,s,a,ring_inner_d,ring_bulk) {
-    if(CMD_PLATE=="a") {
+    if(PLATE=="a") {
         ring_test_plate_a(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
-    } else if(CMD_PLATE=="b") {
+    } else if(PLATE=="b") {
         ring_test_plate_b(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
     } else {
-        echo("CMD_PLATE is invalid");
+        echo("PLATE is invalid");
     }
 }
 

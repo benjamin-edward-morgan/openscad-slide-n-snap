@@ -114,17 +114,17 @@ module slide_n_snap_male_clip_ring_test_b(t,w,l,ring_inner_d,ring_bulk,$fn=32) {
         {
             hull() 
             {    
-              translate([ring_outer_r,ring_outer_r])
+              translate([ring_outer_r+2*ring_bulk,ring_outer_r])
               circle(r=ring_outer_r);
               
-              translate([ring_outer_r,0])  
+              translate([ring_outer_r+2*ring_bulk,0])  
               square(size=[ring_outer_r,ring_outer_r]);  
                 
               translate([-w/2,0])    
               square(size=[w,l]);  
             }
         
-            translate([ring_outer_r,ring_outer_r])
+            translate([ring_outer_r+2*ring_bulk,ring_outer_r])
             circle(r=ring_inner_d/2);
         }
     }

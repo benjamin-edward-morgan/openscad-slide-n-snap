@@ -25,8 +25,10 @@ union() {
 ```
 
 
-<img src="img/test_above.png" height="200">
-<img src="img/test_below.png" height="200">
+<img src="png/slide_n_snap_test_plate_a_small_above.png" height="200">
+<img src="png/slide_n_snap_test_plate_a_small_below.png" height="200">
+<img src="img/slide_n_snap_test_plate_b_small_above.png" height="200">
+<img src="img/slide_n_snap_test_plate_b_small_below.png" height="200">
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />

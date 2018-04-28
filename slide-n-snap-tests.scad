@@ -4,7 +4,7 @@ http://creativecommons.org/licenses/by/4.0/
 
 Original Source: https://github.com/benjamin-edward-morgan/openscad-slide-n-snap
 
-These are test objects utilizing the slide-n-snap library. These test objects can be used to calibrate the 3D printer being used to print objects with slide-n-snap, to experiment with and fine-tune the parameters, or to test the strength of the connection between test parts.
+These are test objects utilizing the slide-n-snap library. These test objects can be used to calibrate the 3D printer being used to print objects with slide-n-snap, to experiment with and fine-tune the parameters, or to test the strength of the connection between assembled test parts.
 
 */
 
@@ -24,7 +24,7 @@ SIZE="small";
 
 ring_test();
 /* 
-Variables in the size profiles below are the same as those defined in slide-n-snap.scad with two exceptions:
+Variables in the size profiles below are the same as those defined in slide-n-snap.scad with two additions:
 ring_inner_d is the inner diameter of the rings
 ring_bulk is how much extra plastic is added around the ring
 */
@@ -55,7 +55,7 @@ module ring_test_plate(t,w,l,g,j,h,s,a,ring_inner_d,ring_bulk) {
 
 
 /*
-Test Plates to test tensile strength of assembly
+Test Plates to measure tensile strength of assembly
 */
 module ring_test_plate_a(t,w,l,g,j,h,s,a,ring_inner_d,ring_bulk) {
     dist = l+ring_inner_d*2+ring_bulk;
@@ -131,9 +131,6 @@ module slide_n_snap_male_clip_ring_test_b(t,w,l,ring_inner_d,ring_bulk,$fn=32) {
 }
 
 
-/*
-The slide_n_snap_female_clip_negative subtracted from a ring test part.
-*/
 //slide_n_snap_female_clip_ring_test_a(t=1.75,w=5.25,l=7,g=0.3,j=0.6,h=1,s=0.8,a=7,ring_inner_d=5,ring_bulk=2);
 module slide_n_snap_female_clip_ring_test_a(t,w,l,g,j,h,s,a,ring_inner_d) {
     fml_len=slide_n_snap_female_length(w,t,g,j,h,l,s);
@@ -152,9 +149,6 @@ module slide_n_snap_female_clip_ring_test_a(t,w,l,g,j,h,s,a,ring_inner_d) {
     }
 }
 
-/*
-The slide_n_snap_male_clip added with a ring test part.
-*/
 //slide_n_snap_male_clip_ring_test_a(t=1.75,w=5.25,l=7,ring_inner_d=5);
 module slide_n_snap_male_clip_ring_test_a(t,w,l,ring_inner_d) {  
     ring_r2=l/2;

@@ -29,7 +29,7 @@ The `slide-n-snap-tests.scad` file utilizes this library and contains ring-shape
 | Test Plate A | Test Plate B |
 | --- | --- |
 | ![test_plate_ap](img/slide_n_snap_test_a_photo.jpg) | ![test_plate_bp](img/slide_n_snap_test_b_photo.jpg) |
-| ![test_plate_ab](img/slide_n_snap_test_a.png) | ![test_plate_ba](img/slide_n_snap_test_b.png) |
+| ![test_plate_ab](img/slide_n_snap_test_a_small.png) | ![test_plate_ba](img/slide_n_snap_test_b_small.png) |
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />

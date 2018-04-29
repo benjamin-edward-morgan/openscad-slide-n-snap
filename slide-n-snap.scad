@@ -34,9 +34,15 @@ g - Gap between faces inside the clip. Decrease if assembly is too loose, increa
 j - Gap around edge of living spring. Generally this will equal 2*g. If the edge of the living spring prints fused together then increase this value. This value depends on the tolerance of the 3D printer used. 2*g <= j <= 3*j
 h - Length of the base of the latch. 1 or 2 mm is probably all that is needed when printing "right-side-up" for the latch to adhere to the print bed. h > 0
 s - Thickness of living spring. Generally should be around 3 or 4 layers thick for FDM. In the "right-side-up" configuration the living spring is formed with a bridge between the latch and the base of the channel. In the "upside-down" configuration the living spring is formed directly on the print bed and the latch is built up over it.
-c - Extra length of channel. This is how much extra channel to add in front of the female part of the clip. This length depends entirely on the placement of the female clip negative and the body it is removed from. Make this long enough that the channel goes all the way to the edge of your part.
 a - Length of living spring. a <= l
+c - Extra length of channel. This is how much extra channel to add in front of the female part of the clip. This length depends entirely on the placement of the female clip negative and the body it is removed from. Make this long enough that the channel goes all the way to the edge of your part. c > 0
 epsilon - A small value by which some values are fudged to overcome floating point errors. The default is 0.001 to make the real-time rendered view slightly less glitchy and to overcome small numerical errors in geometry used with this library.
+
+The following profiles worked well with the aurthor's printer, but your mileage may vary. Use these values as a starting point. The larger profiles are also slightly looser to accomodate less precise printers. 
+
+//small:  (t=1.75,w=5.25,l=7,g=0.3,j=0.6,h=1,s=1,a=7)
+//medium: (t=2.0,w=6.5,l=8.5,g=0.35,j=0.7,h=1.2,s=1,a=8.5)
+//large:  (t=2.75,w=8,l=10,g=0.4,j=0.8,h=2,s=1.5,a=10)
 */
 
 /*******************************************/

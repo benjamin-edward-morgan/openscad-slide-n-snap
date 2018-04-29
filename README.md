@@ -24,12 +24,11 @@ union() {
 }
 ```
 
-![test_plate_aa](img/slide_n_snap_test_plate_a_small_above.png)
-![test_plate_ab](img/slide_n_snap_test_plate_a_small_below.png)
-![test_plate_ap](img/slide_n_snap_test_plate_a_photo.jpg)
-![test_plate_ba](img/slide_n_snap_test_plate_b_small_above.png)
-![test_plate_bb](img/slide_n_snap_test_plate_b_small_below.png)
-![test_plate_bp](img/slide_n_snap_test_plate_b_photo.jpg)
+| Test Plate A | Test Plate B |
+| --- | --- |
+| ![test_plate_ab](img/slide_n_snap_test_plate_a_small_below.png) | ![test_plate_ba](img/slide_n_snap_test_plate_b_small_above.png) |
+| ![test_plate_ap](img/slide_n_snap_test_plate_a_photo.jpg) | ![test_plate_bp](img/slide_n_snap_test_plate_b_photo.jpg) |
+
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
 <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">slide-n-snap</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/benjamin-edward-morgan/slide-n-snap" property="cc:attributionName" rel="cc:attributionURL">Benjamin E Morgan</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

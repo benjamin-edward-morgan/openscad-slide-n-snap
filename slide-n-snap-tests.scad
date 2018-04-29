@@ -11,8 +11,10 @@ These are test objects utilizing the slide-n-snap library. These test objects ca
 include<slide-n-snap.scad>;
 
 /**** Uncomment a test plate profile ****/
-PLATE="a"; 
-//PLATE="b";
+PLATE="test_a"; 
+//PLATE="test_b";
+//PLATE="female_negative";
+//PLATE="male_positive";
 /**** Uncomment a size profile****/
 SIZE="small";
 //SIZE="medium";
@@ -44,12 +46,16 @@ module ring_test() {
 }
 
 module ring_test_plate(t,w,l,g,j,h,s,a,ring_inner_d,ring_bulk) {
-    if(PLATE=="a") {
+    if(PLATE=="test_a") {
         ring_test_plate_a(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
-    } else if(PLATE=="b") {
+    } else if(PLATE=="test_b") {
         ring_test_plate_b(t=t,w=w,l=l,g=g,j=j,h=h,s=s,a=a,ring_inner_d=ring_inner_d,ring_bulk=ring_bulk);
+    } else if(PLATE=="female_negative") {
+        slide_n_snap_female_clip_negative(t=t,w=w,g=g,j=j,l=l,h=h,s=s,a=a,c=20);
+    } else if (PLATE=="male_positive") {
+        slide_n_snap_male_clip(t=t,w=w,l=l);
     } else {
-        echo("PLATE is invalid");
+       echo("PLATE is invalid");
     }
 }
 

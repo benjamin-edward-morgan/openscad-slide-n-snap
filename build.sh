@@ -1,5 +1,10 @@
 #!/bin/bash -e
 
+openscad -v >/dev/null 2>&1 || { 
+  printf "Please set up openscad so that it can be used in this script.\nSee https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment\n" 
+  exit 1
+}
+
 function render_png() {
   PLATE=$1
   SIZE=$2

@@ -4,8 +4,6 @@ Use these openSCAD modules to attach two FDM 3D printed parts together securely 
 
 The female part's living spring and latch snaps and locks the male part in place when they are assembled. The female part is modeled in negative space and must be subtracted from one of the parts you wish to assemble. The male part of the connection is modeled in positive space and is added with the other part you are assembling. It is important to print the parts in their given orientations to maximize the tensile strength of the connection.
 
-The slide-n-snap-tests.scad file utilizes this library and contains ring-shaped test parts to measure the fit and strength with different input parameters.
-
 Usage:
 ```
 //Copy slide-n-snap.scad to the same directory where your openSCAD files are and use an include statement:
@@ -24,10 +22,14 @@ union() {
 }
 ```
 
+# Test Parts
+
+The `slide-n-snap-tests.scad` file utilizes this library and contains ring-shaped test parts to measure the fit and strength with different input parameters.
+
 | Test Plate A | Test Plate B |
 | --- | --- |
-| ![test_plate_ab](img/slide_n_snap_test_plate_a_small_below.png) | ![test_plate_ba](img/slide_n_snap_test_plate_b_small_above.png) |
 | ![test_plate_ap](img/slide_n_snap_test_plate_a_photo.jpg) | ![test_plate_bp](img/slide_n_snap_test_plate_b_photo.jpg) |
+| ![test_plate_ab](img/slide_n_snap_test_plate_a_render.png) | ![test_plate_ba](img/slide_n_snap_test_plate_b_render.png) |
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
